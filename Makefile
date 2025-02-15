@@ -1,7 +1,12 @@
-SRCS = 
+SRCS_CLIENT = client.c \
+	   helper-functions/ft_printf/ft_printf.c helper-functions/ft_printf/ft_putchar.c helper-functions/ft_printf/ft_putstr.c helper-functions/ft_printf/ft_putnbr.c helper-functions/ft_printf/convert_hexa.c helper-functions/ft_printf/convert_decimal.c helper-functions/custom_error.c helper-functions/ft_atoi.c
 
-OBJS = $(SRCS:.c=.o)
-NAME = server
+SRCS_SERVER = server.c \
+	   helper-functions/ft_printf/ft_printf.c helper-functions/ft_printf/ft_putchar.c helper-functions/ft_printf/ft_putstr.c helper-functions/ft_printf/ft_putnbr.c helper-functions/ft_printf/convert_hexa.c helper-functions/ft_printf/convert_decimal.c helper-functions/custom_error.c helper-functions/ft_atoi.c
+
+
+CLIENT_OBJS = $(SRCS_CLIENT:.c=.o)
+SERVER_OBJS = $(SRCS_SERVER:.c=.o)
 CC = cc
 RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
@@ -9,19 +14,20 @@ CFLAGS = -Wall -Wextra -Werror
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+all: client server
 
-all: $(NAME)
+client: $(CLIENT_OBJS)
+	$(CC) $(CFLAGS) -o client $(CLIENT_OBJS)
+
+server: $(SERVER_OBJS)
+	$(CC) $(CFLAGS) -o server $(SERVER_OBJS)
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(CLIENT_OBJS) $(SERVER_OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) client server
 
 re: fclean all
-
-.SECONDARY: ${OBJS}
 
 .PHONY: all clean fclean re
