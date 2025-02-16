@@ -14,12 +14,12 @@
 # define MINITALK_H
 
 # include <signal.h>
+# include <stdlib.h>
 # include <sys/types.h>
 # include <unistd.h>
-# include <stdlib.h>
 
-int	ft_printf(const char *string, ...);
+int			ft_printf(const char *string, ...);
 long long	ft_atoi(char *str);
-void	custom_error(char *msg);
+void		custom_error(char *msg);
 
 #endif
