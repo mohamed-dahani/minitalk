@@ -6,26 +6,31 @@
 /*   By: mdahani <mdahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 10:53:54 by mdahani           #+#    #+#             */
-/*   Updated: 2025/02/16 10:55:22 by mdahani          ###   ########.fr       */
+/*   Updated: 2025/02/19 19:11:33 by mdahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minitalk.h"
 
-void	send_signal(char c, pid_t pid)
+static void	send_signal(char c, pid_t pid)
 {
 	int	i;
 
-	i = 0;
-	while (i < 8)
+	i = 8;
+	while (i--)
 	{
-		if (!((c >> i) & 1))
+		if ((c >> i) & 1)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(100);
-		i++;
+		usleep(400);
 	}
+}
+
+static void	hndl_signal(int sig)
+{
+	if (sig == SIGUSR1)
+		ft_printf("the message has been received\n");
 }
 
 int	main(int ac, char **av)
@@ -39,6 +44,7 @@ int	main(int ac, char **av)
 		if (pid <= 0)
 			return (1);
 		i = 0;
+		signal(SIGUSR1, hndl_signal);
 		while (av[2][i])
 		{
 			send_signal(av[2][i], pid);
