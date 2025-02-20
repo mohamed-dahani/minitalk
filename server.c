@@ -6,7 +6,7 @@
 /*   By: mdahani <mdahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 10:27:12 by mdahani           #+#    #+#             */
-/*   Updated: 2025/02/19 19:13:33 by mdahani          ###   ########.fr       */
+/*   Updated: 2025/02/20 09:50:33 by mdahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,12 @@ static void	handler_signal(int sigum, siginfo_t *siginfo, void *walo)
 	g_client = siginfo->si_pid;
 }
 
-int	main(int ac, char **av)
+int	main(void)
 {
 	struct sigaction	sa;
 	pid_t				server_pid;
 
-	(void)av;
 	g_client = 0;
-	if (ac != 1)
-		return (1);
 	server_pid = getpid();
 	sa.sa_sigaction = handler_signal;
 	sigemptyset(&sa.sa_mask);
