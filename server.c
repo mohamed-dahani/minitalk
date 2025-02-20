@@ -6,7 +6,7 @@
 /*   By: mdahani <mdahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 10:27:12 by mdahani           #+#    #+#             */
-/*   Updated: 2025/02/20 09:50:33 by mdahani          ###   ########.fr       */
+/*   Updated: 2025/02/20 10:52:58 by mdahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ static void	write_message(char c, int *bit)
 	{
 		write(1, "\n", 1);
 		if (kill(g_client, SIGUSR1) == -1)
-		{
 			custom_error("Error sending signal\n");
-			exit(1);
-		}
 	}
 }
 

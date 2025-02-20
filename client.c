@@ -6,7 +6,7 @@
 /*   By: mdahani <mdahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 10:53:54 by mdahani           #+#    #+#             */
-/*   Updated: 2025/02/20 09:56:39 by mdahani          ###   ########.fr       */
+/*   Updated: 2025/02/20 10:55:52 by mdahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	send_signal(char c, pid_t pid)
 	}
 }
 
-static void	hndl_signal(int sig)
+static void	handler_signal(int sig)
 {
 	if (sig == SIGUSR1)
 		ft_printf("The message has been received\n");
@@ -44,7 +44,7 @@ int	main(int ac, char **av)
 		if (pid <= 0)
 			return (1);
 		i = 0;
-		signal(SIGUSR1, hndl_signal);
+		signal(SIGUSR1, handler_signal);
 		while (av[2][i])
 		{
 			send_signal(av[2][i], pid);
