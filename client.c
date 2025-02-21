@@ -6,7 +6,7 @@
 /*   By: mdahani <mdahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 10:53:54 by mdahani           #+#    #+#             */
-/*   Updated: 2025/02/20 10:55:52 by mdahani          ###   ########.fr       */
+/*   Updated: 2025/02/21 21:25:26 by mdahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int ac, char **av)
 	{
 		pid = ft_atoi(av[1]);
 		if (pid <= 0)
-			return (1);
+			custom_error("The process id is incorrect\n");
 		i = 0;
 		signal(SIGUSR1, handler_signal);
 		while (av[2][i])

@@ -6,7 +6,7 @@
 /*   By: mdahani <mdahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 10:27:12 by mdahani           #+#    #+#             */
-/*   Updated: 2025/02/20 10:52:58 by mdahani          ###   ########.fr       */
+/*   Updated: 2025/02/21 21:27:01 by mdahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,14 @@ static void	handler_signal(int sigum, siginfo_t *siginfo, void *walo)
 	g_client = siginfo->si_pid;
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	struct sigaction	sa;
 	pid_t				server_pid;
 
+	if (ac > 1)
+		custom_error("You must run the program only\n");
+	(void) av;
 	g_client = 0;
 	server_pid = getpid();
 	sa.sa_sigaction = handler_signal;
