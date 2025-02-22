@@ -6,7 +6,7 @@
 /*   By: mdahani <mdahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 10:27:12 by mdahani           #+#    #+#             */
-/*   Updated: 2025/02/21 21:27:01 by mdahani          ###   ########.fr       */
+/*   Updated: 2025/02/22 17:53:55 by mdahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	write_message(char c, int *bit)
 	{
 		write(1, "\n", 1);
 		if (kill(g_client, SIGUSR1) == -1)
-			custom_error("Error sending signal\n");
+			custom_error("error sending signal\n");
 	}
 }
 
@@ -61,7 +61,7 @@ int	main(int ac, char **av)
 	pid_t				server_pid;
 
 	if (ac > 1)
-		custom_error("You must run the program only\n");
+		custom_error("you must run the program only\n");
 	(void) av;
 	g_client = 0;
 	server_pid = getpid();

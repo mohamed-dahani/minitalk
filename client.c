@@ -6,7 +6,7 @@
 /*   By: mdahani <mdahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 10:53:54 by mdahani           #+#    #+#             */
-/*   Updated: 2025/02/21 21:25:26 by mdahani          ###   ########.fr       */
+/*   Updated: 2025/02/22 17:56:48 by mdahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,15 @@ static void	send_signal(char c, pid_t pid)
 	while (i--)
 	{
 		if ((c >> i) & 1)
-			kill(pid, SIGUSR1);
+		{
+			if (kill(pid, SIGUSR1) == -1)
+				custom_error("permission denied\n");	
+		}
 		else
-			kill(pid, SIGUSR2);
+		{
+			if (kill(pid, SIGUSR2) == -1)
+				custom_error("permission denied\n");
+		}
 		usleep(400);
 	}
 }
@@ -30,7 +36,7 @@ static void	send_signal(char c, pid_t pid)
 static void	handler_signal(int sig)
 {
 	if (sig == SIGUSR1)
-		ft_printf("The message has been received\n");
+		ft_printf("the message has been received\n");
 }
 
 int	main(int ac, char **av)
@@ -42,7 +48,7 @@ int	main(int ac, char **av)
 	{
 		pid = ft_atoi(av[1]);
 		if (pid <= 0)
-			custom_error("The process id is incorrect\n");
+			custom_error("the process id is incorrect\n");
 		i = 0;
 		signal(SIGUSR1, handler_signal);
 		while (av[2][i])
