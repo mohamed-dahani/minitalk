@@ -6,7 +6,7 @@
 /*   By: mdahani <mdahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 10:53:54 by mdahani           #+#    #+#             */
-/*   Updated: 2025/02/22 17:56:48 by mdahani          ###   ########.fr       */
+/*   Updated: 2025/02/22 18:05:23 by mdahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	send_signal(char c, pid_t pid)
 		if ((c >> i) & 1)
 		{
 			if (kill(pid, SIGUSR1) == -1)
-				custom_error("permission denied\n");	
+				custom_error("permission denied\n");
 		}
 		else
 		{
