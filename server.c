@@ -6,7 +6,7 @@
 /*   By: mdahani <mdahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 10:27:12 by mdahani           #+#    #+#             */
-/*   Updated: 2025/02/22 17:53:55 by mdahani          ###   ########.fr       */
+/*   Updated: 2025/02/23 12:40:46 by mdahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	main(int ac, char **av)
 		|| sigaction(SIGUSR2, &sa, NULL) == -1)
 		return (1);
 	while (1)
-	{
-	}
+		pause();
 	return (0);
 }
